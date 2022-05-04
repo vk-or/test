@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - uses: UnicornGlobal/trufflehog-actions-scan@master
         with:
           branch: ${{ github.head_ref }}
