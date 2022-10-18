@@ -36,7 +36,7 @@ jobs:
       run: |
         echo 'BODY<<EOM' >> $GITHUB_ENV
         ${{ github.event.issue_comment.body || github.event.pull_request.body }} >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
+        echo 'EOM' >> $GITHUB_ENV
 
     - name: "Comment"
       uses: slackapi/slack-github-action@v1
