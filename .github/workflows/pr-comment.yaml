@@ -25,13 +25,18 @@ on:
       - created
       - edited
       - deleted
+  pull_request_review:
+    types:
+      - submitted
+      - edited
+      - dismissed
 
 jobs:
   comment:
     name: "Comment"
     runs-on: ubuntu-20.04
     steps:
-    - name: "Pring payload"
+    - name: "Print payload"
       run: |
         echo "GH ${{ toJSON(github) }}"
     
