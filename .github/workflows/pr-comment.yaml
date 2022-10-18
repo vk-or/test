@@ -38,7 +38,7 @@ jobs:
     - name: "Prepare message"
       run: |
         echo 'BODY<<EOF' >> $GITHUB_ENV
-        echo "${{ github.event.comment.body }}" | jq -sR . | xargs >> $GITHUB_ENV
+        echo "${{ github.event.comment.body || github.event.pull_request.body }}" | jq -sR . | xargs >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
     - name: "Comment"
@@ -51,7 +51,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "TITLE PR ${{ github.event.pull_request.title || github.event.issue.title }} PR COMMENT ${{ env.BODY }}"
+                  "text": "TITLE PR ${{ github.event.pull_request.title || github.event.issue.title }}\nPR COMMENT ${{ env.BODY }}"
                 }
               }
             ] 
