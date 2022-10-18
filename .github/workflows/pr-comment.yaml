@@ -32,6 +32,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     
+    - name: "Prepare message"
+      run: |
+         echo "{BODY}={$(cat <<EOM
+         ${{ github.event.issue_comment.body || github.event.pull_request.body }}
+         EOM
+         )}"  >> $GITHUB_ENV
     - name: "Comment"
       uses: slackapi/slack-github-action@v1
       with:
@@ -42,7 +48,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "TITLE PR ${{ github.event.pull_request.title }} PR COMMENT ${{ toJSON(github.event.issue_comment.body || github.event.pull_request.body) }}"
+                  "text": "TITLE PR ${{ github.event.pull_request.title }} PR COMMENT ${{ env.BODY }}"
                 }
               }
             ] 
