@@ -14,13 +14,13 @@ jobs:
       with:
         payload: |
           {
-            "text": "@michel.skoglund COMMENT PR - ${{ github.event.pull_request_review.comment }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
+            "text": "COMMENT PR - ${{ github.event.pull_request_review.comment }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
             "blocks": [
             {
               "type": "section",
               "text": {
                 "type": "mrkdwn",
-                "text": "@michel.skoglund Comment PR - ${{ job.status }}\n${{ github.event.pull_request_review.comment }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
+                "text": "Comment PR - ${{ job.status }}\n${{ github.event.pull_request_review.comment }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
               }
             }
           ] 
