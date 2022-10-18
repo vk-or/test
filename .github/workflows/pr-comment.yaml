@@ -33,8 +33,8 @@ jobs:
     steps:
     - name: "Pring payload"
       run: |
-        echo "Issue ${{ github.event.issue }}"
-        echo "PR  ${{ github.event.pull_request }}"
+        echo "Issue ${{ toJSON(github.event.issue_comment) }}"
+        echo "PR  ${{ toJSON(github.event.pull_request) }}"
     
     - name: "Prepare message"
       run: |
