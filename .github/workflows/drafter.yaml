@@ -1,9 +1,9 @@
-name: "Release of Maven GH reusable workflow"
+name: "Release"
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   test_action:
