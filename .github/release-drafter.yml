@@ -5,7 +5,7 @@ template: |
 
   $CHANGES
   
-  #### Full Changelog: [$PREVIOUS_TAG...v$RESOLVED_VERSION](https://github.com/$OWNER/$REPOSITORY/compare/v2.2.0...v$RESOLVED_VERSION)
+  #### Full Changelog: [v$PREVIOUS_TAG...v$RESOLVED_VERSION](https://github.com/$OWNER/$REPOSITORY/compare/v$PREVIOUS_TAG...v$RESOLVED_VERSION)
 categories:
   - title: 'Breaking'
     label: 'breaking'
