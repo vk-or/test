@@ -35,7 +35,7 @@ jobs:
     - name: "Prepare message"
       run: |
         echo 'BODY<<EOM' >> $GITHUB_ENV
-        ${{ github.event.issue_comment.body || github.event.pull_request.body }} >> $GITHUB_ENV
+        ${{ github.event.issue_comment.body || github.event.pull_request.body || default }} >> $GITHUB_ENV
         echo 'EOM' >> $GITHUB_ENV
 
     - name: "Comment"
