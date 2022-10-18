@@ -32,13 +32,12 @@ jobs:
       with:
         payload: |
           {
-            "text": "COMMENT PR - ${{ github.event.pull_request_review.comment || github.event.review_requested.body }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
             "blocks": [
               {
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "Text",
+                  "text": "COMMENT PR - ${{ github.event.pull_request_review.comment || github.event.review_requested.body }}\n *Created by:* <${{ github.event.pull_request.user.login }}>"
                 }
               }
             ] 
