@@ -2,10 +2,28 @@ name: "Comment"
 
 on:
   pull_request:
+    types:
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - opened
+      - edited
+      - closed
+      - reopened
+      - synchronize
+      - converted_to_draft
+      - ready_for_review
+      - locked
+      - unlocked
+      - review_requested
+      - review_request_removed
+      - auto_merge_enabled
+      - auto_merge_disabled
 
 jobs:
-  runners_cleanup:
-    name: "Cleanup GitHub offline runners"
+  comment:
+    name: "Comment"
     runs-on: ubuntu-20.04
     steps:
     
@@ -14,16 +32,16 @@ jobs:
       with:
         payload: |
           {
-            "text": "COMMENT PR - ${{ github.event.pull_request_review.comment }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
+            "text": "COMMENT PR - ${{ github.event.pull_request_review.comment || github.event.review_requested.body }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
             "blocks": [
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "Comment PR - ${{ job.status }}\n${{ github.event.pull_request_review.comment }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": ""
+                }
               }
-            }
-          ] 
+            ] 
           }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK }}
