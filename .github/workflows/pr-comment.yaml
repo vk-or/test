@@ -34,7 +34,9 @@ jobs:
     
     - name: "Prepare message"
       run: |
-        echo "BODY=${{ github.event.issue.body }}" | jq -sR . >> $GITHUB_ENV
+        echo 'BODY<<EOF' >> $GITHUB_ENV
+        echo "${{ github.event.issue.body }}" | jq -sR . | xargs >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
 
     - name: "Comment"
       uses: slackapi/slack-github-action@v1
@@ -46,7 +48,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "TITLE PR ${{ github.event.pull_request.title }} PR COMMENT ${{ env.BODY }}"
+                  "text": "TITLE PR ${{ github.event.pull_request.title || github.event.issue.title }} PR COMMENT ${{ env.BODY }}"
                 }
               }
             ] 
