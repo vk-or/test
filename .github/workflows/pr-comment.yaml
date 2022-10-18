@@ -34,10 +34,7 @@ jobs:
     
     - name: "Prepare message"
       run: |
-        echo "$(cat <<EOM
-        BODY=${{ github.event.issue.body }}
-        EOM
-        )" >> $GITHUB_ENV
+        echo "BODY=${{ github.event.issue.body }}" | jq -sR . >> $GITHUB_ENV
 
     - name: "Comment"
       uses: slackapi/slack-github-action@v1
