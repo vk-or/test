@@ -37,7 +37,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "COMMENT PR - ${{ github.event.pull_request.body }}\nTITLE - ${{ github.event.pull_request.title }}\n",
+                  "text": "COMMENT PR - ${{ github.event.pull_request.body }} TITLE - ${{ github.event.pull_request.title }}",
                 }
               }
             ] 
