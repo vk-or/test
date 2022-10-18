@@ -37,7 +37,7 @@ jobs:
         echo "$(cat <<EOM
         BODY="ddd"
         EOM
-        )"" >> $GITHUB_ENV
+        )" >> $GITHUB_ENV
 
     - name: "Comment"
       uses: slackapi/slack-github-action@v1
