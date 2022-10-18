@@ -31,6 +31,10 @@ jobs:
     name: "Comment"
     runs-on: ubuntu-20.04
     steps:
+    - name: "Pring payload"
+      run: |
+        echo "Issue ${{ github.event.issue }}"
+        echo "PR  ${{ github.event.pull_request }}"
     
     - name: "Prepare message"
       run: |
