@@ -35,7 +35,7 @@ jobs:
     - name: "Prepare message"
       run: |
         echo "$(cat <<EOM
-        BODY="ddd"
+        BODY=${{ github.event.pull_request.body }}
         EOM
         )" >> $GITHUB_ENV
 
