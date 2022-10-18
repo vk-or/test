@@ -48,7 +48,7 @@ jobs:
     - name: "Prepare message"
       run: |
         echo 'BODY<<EOF' >> $GITHUB_ENV
-        echo "${{ github.thread[0].body || github.event.review.body || github.event.comment.body || github.event.pull_request.body }}" | jq -sR . | xargs >> $GITHUB_ENV
+        echo "${{ github.event.review.body || github.event.comment.body || github.event.pull_request.body }}" | jq -sR . | xargs >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
     - name: "Comment"
