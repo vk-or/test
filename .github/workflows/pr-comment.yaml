@@ -1,0 +1,28 @@
+name: "Comment"
+
+on:
+  pull_request:
+
+jobs:
+  runners_cleanup:
+    name: "Cleanup GitHub offline runners"
+    runs-on: ubuntu-20.04
+    steps:
+    
+    - name: "Comment"
+      uses: slackapi/slack-github-action@v1
+      with:
+        payload: |
+          {
+            "text": "@michel.skoglund COMMENT PR - ${{ github.event.pull_request_review.comment }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
+            "blocks": [
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "@michel.skoglund Comment PR - ${{ job.status }}\n${{ github.event.pull_request_review.comment }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
+              }
+            }
+          ] 
+          }
+      env:
