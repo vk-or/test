@@ -25,31 +25,15 @@ jobs:
     name: "Comment"
     runs-on: ubuntu-20.04
     steps:
-    - name: "Print payload"
-      run: |
-        echo "GH ${{ toJSON(github) }}"
-    
-    - name: "Prepare message"
-      run: |
-        echo 'BODY<<EOF' >> $GITHUB_ENV
-        echo "${{ github.event.review.body || github.event.comment.body || github.event.pull_request.body }}" | jq -sR . | xargs >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
+      - name: Mention to Slack Actions
+        uses: Laurenfrost/mention-to-slack@latest
+        with:
+          configuration-path: .github/mention-to-slack.yml
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          slack-webhook-url: ${{ secrets.SLACK }}
+          icon-url: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+          bot-name: ${{github.repository}}
+          run-id: ${{ github.run_id }}
+          debug-flag: false
+          
 
-    - name: "Comment"
-      uses: slackapi/slack-github-action@v1
-      with:
-        payload: |
-          {
-            "blocks": [
-              {
-                "type": "section",
-                "text": {
-                  "type": "mrkdwn",
-                  "text": "PR URL ${{ github.event.pull_request.html_url }}\nTITLE PR ${{ github.event.pull_request.title || github.event.issue.title }}\nPR COMMENT ${{ env.BODY }}"
-                }
-              }
-            ] 
-          }
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK }}
-        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
