@@ -37,7 +37,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "COMMENT PR - ${{ github.event.pull_request.body }}\n TITLE - ${{ github.event.pull_request.title }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
+                  "text": "COMMENT PR - ${{ github.event.pull_request.body }}\n TITLE - ${{ github.event.pull_request.title }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
                 }
               }
             ] 
