@@ -3,38 +3,22 @@ name: "Comment"
 on:
   pull_request:
     types:
-      - assigned
-      - unassigned
-      - labeled
-      - unlabeled
-      - opened
-      - edited
-      - closed
-      - reopened
-      - synchronize
-      - converted_to_draft
-      - ready_for_review
-      - locked
-      - unlocked
-      - review_requested
-      - review_request_removed
-      - auto_merge_enabled
-      - auto_merge_disabled
+     - opened 
+     - reopened 
+     - edited 
+     - closed 
+     - review_requested
   issue_comment:
     types:
       - created
       - edited
-      - deleted
   pull_request_review:
     types:
       - submitted
-      - edited
-      - dismissed
   pull_request_review_comment:
     types:
       - created
       - edited
-      - deleted
 
 jobs:
   comment:
