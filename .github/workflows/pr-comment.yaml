@@ -4,8 +4,8 @@ on:
   pull_request:
 
 jobs:
-  runners_cleanup:
-    name: "Cleanup GitHub offline runners"
+  comment:
+    name: "Comment"
     runs-on: ubuntu-20.04
     steps:
     
@@ -16,15 +16,15 @@ jobs:
           {
             "text": "COMMENT PR - ${{ github.event.pull_request_review.comment }}\n *Created by:* <${{ github.event.pull_request.user.login }}>",
             "blocks": [
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "Comment PR - ${{ job.status }}\n${{ github.event.pull_request_review.comment }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Comment PR - ${{ job.status }}\n${{ github.event.pull_request_review.comment }} \n *Created by:* <${{ github.event.pull_request.user.login }}>"
+                }
               }
-            }
-          ] 
+            ] 
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ inputs.SLACK }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
