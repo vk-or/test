@@ -21,9 +21,10 @@ on:
       - auto_merge_enabled
       - auto_merge_disabled
   issue_comment:
-    - created
-    - edited
-    - deleted
+    types:
+      - created
+      - edited
+      - deleted
 
 jobs:
   comment:
