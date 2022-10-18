@@ -35,7 +35,7 @@ jobs:
     - name: "Prepare message"
       run: |
         echo "$(cat <<EOM
-        BODY=${{ github.event.issue_comment.issue.body }}
+        BODY=${{ github.event.issue.body }}
         EOM
         )" >> $GITHUB_ENV
 
