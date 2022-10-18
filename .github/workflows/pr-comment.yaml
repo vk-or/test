@@ -45,7 +45,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "TITLE PR ${{ github.event.pull_request.title || github.event.issue.title }}\nPR COMMENT ${{ env.BODY }}"
+                  "text": "PR URL ${{ github.event.pull_request.html_url }}\nTITLE PR ${{ github.event.pull_request.title || github.event.issue.title }}\nPR COMMENT ${{ env.BODY }}"
                 }
               }
             ] 
