@@ -1,13 +1,15 @@
 name: "Greeting on variable day"
 on:
   workflow_dispatch
+env:
+  DAY: Today
 jobs:
-  if-Windows-else:
-    runs-on: macos-latest
+  job:
+    runs-on: ubuntu-latest
+    env:
+      Say: Hello
     steps:
-      - name: condition 1
-        if: runner.os == 'Windows'
-        run: echo "The operating system on the runner is $env:RUNNER_OS."
-      - name: condition 2
-        if: runner.os != 'Windows'
-        run: echo "The operating system on the runner is not Windows, it's ${{ env.RUNNER_OS }}."
+      - name: "Say Hello Mona it's Monday"
+        run: echo "$Say $Name. Today is $DAY!"
+        env:
+          Name: John
