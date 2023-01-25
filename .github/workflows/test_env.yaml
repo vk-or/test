@@ -10,6 +10,6 @@ jobs:
       Say: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        run: echo "$Say $Name. Today is $DAY!"
+        run: echo "$Say ${{ env.Name }}. Today is $DAY! Run on $RUNNER_NAME."
         env:
           Name: John
