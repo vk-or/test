@@ -13,9 +13,9 @@ jobs:
       
       - uses: anchore/scan-action/download-grype@v3
         with: 
-          grype-version: ${{ env.grype_version }}
+          grype-version: v0.53.0
           
-      - run: grype version
+      - run: grype version | egrep "^Version:.*0.54.0$"
       
       - name: Scan image
         uses: anchore/scan-action@v3
