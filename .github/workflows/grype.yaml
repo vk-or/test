@@ -1,0 +1,23 @@
+name: "[Demo] Run Scan Action"
+
+on: [push, pull_request]
+
+jobs:
+  test-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: anchore/scan-action/download-grype@v3
+        with: 
+          grype-version: 0.53.0
+          
+      - run: grype version
+      
+      - name: Scan image
+        uses: anchore/scan-action@v3
+        with:
+          image: "ubuntu:latest"
+          
+      - run: grype version
+  
