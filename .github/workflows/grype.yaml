@@ -5,15 +5,13 @@ on: [push, pull_request]
 jobs:
   test-image:
     runs-on: ubuntu-latest
-    env:
-      grype-version: v0.53.0
     
     steps:
       - uses: actions/checkout@v3
       
       - uses: anchore/scan-action/download-grype@v3
         with: 
-          grype-version: v0.53.0
+          grype-version: v0.54.0
           
       - run: grype version | egrep "^Version:.*0.54.0$"
       
