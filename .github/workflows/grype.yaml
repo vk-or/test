@@ -13,7 +13,7 @@ jobs:
       
       - uses: anchore/scan-action/download-grype@v3
         with: 
-          grype-version: ${{ env.version }}
+          grype-version: ${{ env.grype_version }}
           
       - run: grype version
       
