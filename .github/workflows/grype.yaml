@@ -10,7 +10,7 @@ jobs:
       
       - uses: anchore/scan-action/download-grype@v3
         with: 
-          grype-version: 0.53.0
+          grype-version: v0.53.0
           
       - run: grype version
       
