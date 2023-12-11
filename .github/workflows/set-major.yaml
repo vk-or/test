@@ -1,24 +1,25 @@
-# This file is managed by Terraform in the https://github.com/atgse/github-config repository.
-#
-# Do NOT change content of the file in the repository as it will be overwritten!
-
-name: "Release repository"
+name: "Set major version tag for new release"
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [released]
+  workflow_dispatch:
+    inputs:
+      TAG_NAME:
+        description: 'Tag name that the major tag will point to'
+        required: true
+
+env:
+  TAG_NAME: ${{ github.event.inputs.TAG_NAME || github.event.release.tag_name }}
+permissions:
+  contents: write
 
 jobs:
-  release:
-    name: "Release of ${{ github.repository }}"
+  update_tag:
+    name: "Update the major tag to include the ${{ github.event.inputs.TAG_NAME || github.event.release.tag_name }} changes"
     runs-on: ubuntu-22.04
-
     steps:
-      - name: "Checkout repo"
-        uses: actions/checkout@v4
-
-      - name: "Prepare a draft of release"
-        uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Update the ${{ env.TAG_NAME }} tag"
+        uses: actions/publish-action@v0.2.2
+        with:
+          source-tag: ${{ env.TAG_NAME }}
