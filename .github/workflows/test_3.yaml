@@ -1,0 +1,32 @@
+name: 'PR comment delete mode test'
+
+on:
+  pull_request:
+
+jobs:
+  version:
+    name: 'Test'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: "0"
+
+      - name: 'Comment PR'
+        uses: ViacheslavKudinov/actions-comment-pull-request@bugfix-delete-mode
+        with:
+          message: |
+            ## :microscope: TFLint
+          pr_number: ${{ github.event.pull_request.number }}
+          mode: 'recreate'
+          comment_tag: "tflint_comment"
+
+      - name: 'Comment PR'
+        uses: ViacheslavKudinov/actions-comment-pull-request@bugfix-delete-mode
+        with:
+          message: |
+            ## :microscope: TFLint
+          pr_number: ${{ github.event.pull_request.number }}
+          mode: 'delete'
+          comment_tag: "tflint_comment"
