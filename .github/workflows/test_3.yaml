@@ -22,6 +22,9 @@ jobs:
           mode: 'recreate'
           comment_tag: "tflint_comment"
 
+      - name: Sleep
+        run: sleep 100
+
       - name: 'Comment PR'
         uses: ViacheslavKudinov/actions-comment-pull-request@bugfix-delete-mode
         with:
